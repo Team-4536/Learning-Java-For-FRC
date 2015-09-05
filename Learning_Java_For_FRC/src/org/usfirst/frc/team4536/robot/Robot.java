@@ -43,8 +43,6 @@ public class Robot extends IterativeRobot {
 	 * =============================
 	 * =============================
 	 */
-	
-	Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
 
 	/**
 	 * @author Liam
@@ -143,7 +141,7 @@ public class Robot extends IterativeRobot {
     	 * ==================================================
     	 */
     	driveTrain.arcadeDrive(0.0, 0.0);
-    	
+
     }
     
     /**

@@ -36,8 +36,8 @@ public class DriveTrain extends Subsystem {
      */
     public void tankDrive(double leftThrottle, double rightThrottle) {
     	
-    	leftTalon.set(leftThrottle);
-    	rightTalon.set(-rightThrottle);
+    	leftTalon.set(-leftThrottle);
+    	rightTalon.set(rightThrottle);
     }
     
     /**
