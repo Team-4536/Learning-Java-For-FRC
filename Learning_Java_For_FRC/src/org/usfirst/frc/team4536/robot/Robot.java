@@ -9,13 +9,19 @@
 package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+
+import org.usfirst.frc.team4536.robot.subsystems.RollerArm;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
+
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Joystick;
-import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
+
+import org.usfirst.frc.team4536.robot.subsystems.*;
 
 /**
  * @author Liam
@@ -43,7 +49,42 @@ public class Robot extends IterativeRobot {
 	 * =============================
 	 * =============================
 	 */
-
+	Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
+	Joystick secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
+	
+	
+	/**
+	 * =====================
+	 * =====================
+	 * MAKE AN ELEVATOR HERE
+	 * =====================
+	 * =====================
+	 */
+	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
+							RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
+							RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
+							RobotMap.TOP_LIMIT_SWITCH,
+							RobotMap.MIDDLE_LIMIT_SWITCH,
+							RobotMap.BOTTOM_LIMIT_SWITCH);
+	
+	/*
+			RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
+			RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
+			RobotMap.TOP_LIMIT_SWITCH,
+			RobotMap.MIDDLE_LIMIT_SWITCH,
+			RobotMap.BOTTOM_LIMIT_SWITCH);
+	*/
+	
+	/**
+	 * ====================
+	 * ====================
+	 * MAKE A PLATFORM HERE
+	 * ====================
+	 * ====================
+	 */
+	
+	Platform platform = new Platform(RobotMap.LEFT_PLATFORM_SOLENOID_CHANNEL, RobotMap.RIGHT_PLATFORM_SOLENOID_CHANNEL);
+	
 	/**
 	 * @author Liam
 	 * Put code here that you want to run ONCE at startup.
@@ -133,6 +174,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
+    	
     	/**
     	 * =============================================================
     	 * =============================================================
@@ -141,7 +183,44 @@ public class Robot extends IterativeRobot {
     	 * =============================================================
     	 */
     	driveTrain.arcadeDrive(0.0, 0.0);
-
+    	
+    	/**
+    	 * ===================================================
+    	 * ===================================================
+    	 * MAKE THE ELEVATOR DRIVE OFF OF A JOYSTICK AXIS HERE
+    	 * ===================================================
+    	 * ===================================================
+    	 */
+    	
+    	
+    	//This prints out the elevator's height
+    	System.out.println(elevator.getCurrentHeight());
+    	
+    	//This if is for some safety so you can't extend the platform and rip off our elevator.
+    	if (elevator.getCurrentHeight() > Constants.PLATFORM_TOGGLE_HEIGHT_LIMIT) {
+    		
+    		/**
+    		 * ===================================================================
+    		 * ===================================================================
+    		 * Make the platform of the robot extend when a button is pressed here
+    		 * ===================================================================
+    		 * ===================================================================
+    		 */
+    		
+    		
+    		/**
+    		 * ====================================================================
+    		 * ====================================================================
+    		 * Make the platform of the robot retract when a button is pressed here
+    		 * ====================================================================
+    		 * ====================================================================
+    		 */
+    		
+    		
+    	}
+    	
+    	//This updates the elevator's height when it hits limit switches
+    	elevator.update();
     }
     
     /**

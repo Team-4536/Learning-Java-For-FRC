@@ -32,7 +32,7 @@ public class DriveTrain extends Subsystem {
     /**
      * @ author Liam and Stepan
      * @ param leftThrottle - The throttle input into the left motor
-     * @ param rightTHrottle - The throttle input into the right motor
+     * @ param rightThrottle - The throttle input into the right motor
      */
     public void tankDrive(double leftThrottle, double rightThrottle) {
     	
