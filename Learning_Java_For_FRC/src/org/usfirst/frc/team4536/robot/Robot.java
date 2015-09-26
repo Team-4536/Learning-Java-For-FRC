@@ -10,8 +10,6 @@ package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
-import org.usfirst.frc.team4536.robot.subsystems.RollerArm;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
