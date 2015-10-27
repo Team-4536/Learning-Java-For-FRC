@@ -182,7 +182,20 @@ public class Robot extends IterativeRobot {
     	 * ===================================================
     	 * ===================================================
     	 */
-    	elevator.drive(ada.getY());
+    	//elevator.drive(ada.getY());
+    	
+
+    	double throttlee = ada.getY();
+    	
+    	if (throttlee > 0.25){
+    		throttlee = 0.25;
+    	} if (throttlee < -0.25){
+    		throttlee = -0.25;
+    	}
+    	
+    	elevator.drive(throttlee);
+    	
+    	
     	
     	//This prints out the elevator's height
     	System.out.println(elevator.getCurrentHeight());
