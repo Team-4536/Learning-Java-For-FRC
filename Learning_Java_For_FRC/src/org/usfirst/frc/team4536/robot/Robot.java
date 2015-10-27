@@ -38,8 +38,6 @@ import org.usfirst.frc.team4536.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 	
-	DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
-	
 	/**
 	 * =============================
 	 * =============================
@@ -47,9 +45,7 @@ public class Robot extends IterativeRobot {
 	 * =============================
 	 * =============================
 	 */
-	Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
-	Joystick secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
-	
+	Joystick ada = new Joystick(0);
 	
 	/**
 	 * =====================
@@ -80,8 +76,6 @@ public class Robot extends IterativeRobot {
 	 * ====================
 	 * ====================
 	 */
-	
-	Platform platform = new Platform(RobotMap.LEFT_PLATFORM_SOLENOID_CHANNEL, RobotMap.RIGHT_PLATFORM_SOLENOID_CHANNEL);
 	
 	/**
 	 * @author Liam
@@ -180,7 +174,6 @@ public class Robot extends IterativeRobot {
     	 * =============================================================
     	 * =============================================================
     	 */
-    	driveTrain.arcadeDrive(0.0, 0.0);
     	
     	/**
     	 * ===================================================
@@ -189,36 +182,10 @@ public class Robot extends IterativeRobot {
     	 * ===================================================
     	 * ===================================================
     	 */
-    	
+    	elevator.drive(ada.getY());
     	
     	//This prints out the elevator's height
     	System.out.println(elevator.getCurrentHeight());
-    	
-    	//This if is for some safety so you can't extend the platform and rip off our elevator.
-    	if (elevator.getCurrentHeight() > Constants.PLATFORM_TOGGLE_HEIGHT_LIMIT) {
-    		
-    		/**
-    		 * ===================================================================
-    		 * ===================================================================
-    		 * Make the platform of the robot extend when a button is pressed here
-    		 * ===================================================================
-    		 * ===================================================================
-    		 */
-    		
-    		
-    		/**
-    		 * ====================================================================
-    		 * ====================================================================
-    		 * Make the platform of the robot retract when a button is pressed here
-    		 * ====================================================================
-    		 * ====================================================================
-    		 */
-    		
-    		
-    	}
-    	
-    	//This updates the elevator's height when it hits limit switches
-    	elevator.update();
     }
     
     /**
