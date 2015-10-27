@@ -186,11 +186,12 @@ public class Robot extends IterativeRobot {
     	
 
     	double throttlee = ada.getY();
+    	double speedLimit = 0.25;
     	
-    	if (throttlee > 0.25){
-    		throttlee = 0.25;
-    	} if (throttlee < -0.25){
-    		throttlee = -0.25;
+    	if (throttlee > speedLimit){
+    		throttlee = speedLimit;
+    	} if (throttlee < -speedLimit){
+    		throttlee = -speedLimit;
     	}
     	
     	elevator.drive(throttlee);
