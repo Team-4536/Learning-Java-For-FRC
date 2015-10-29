@@ -45,6 +45,8 @@ public class Robot extends IterativeRobot {
 	 * =============================
 	 * =============================
 	 */
+	
+	Joystick forttle = new Joystick(1);
 	Joystick ada = new Joystick(0);
 	
 	/**
@@ -54,6 +56,10 @@ public class Robot extends IterativeRobot {
 	 * =====================
 	 * =====================
 	 */
+	
+	DriveTrain drivetrain = new DriveTrain(1,0);
+	
+	
 	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
 							RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
 							RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
@@ -164,6 +170,8 @@ public class Robot extends IterativeRobot {
      * ==========================================
      * ==========================================
      */
+    
+    
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
     	
@@ -181,12 +189,16 @@ public class Robot extends IterativeRobot {
     	 * MAKE THE ELEVATOR DRIVE OFF OF A JOYSTICK AXIS HERE
     	 * ===================================================
     	 * ===================================================
+    	 *
     	 */
+    	
+    	drivetrain.arcadeDrive(forttle.getY(), forttle.getX());
+    	
     	//elevator.drive(ada.getY());
     	
 
     	double throttlee = ada.getY();
-    	double speedLimit = 0.25;
+    	double speedLimit = 1.0;
     	
     	if (throttlee > speedLimit){
     		throttlee = speedLimit;
