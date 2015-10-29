@@ -46,4 +46,5 @@ public class RobotMap {
     public static final int TOP_LIMIT_SWITCH =3;
     public static final int MIDDLE_LIMIT_SWITCH =1;
     public static final int BOTTOM_LIMIT_SWITCH =4;
+
 }

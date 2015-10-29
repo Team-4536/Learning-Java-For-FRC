@@ -193,6 +193,35 @@ public class Robot extends IterativeRobot {
     	 */
     	
     	drivetrain.arcadeDrive(forttle.getY(), forttle.getX());
+    	double speedLimit1 = 0.25;
+    	double sped = forttle.getY();
+    	if (sped > speedLimit1){
+    		sped = speedLimit1;
+    	} if (sped < -speedLimit1);
+    	double sped2 = forttle.getX();
+    	if (sped2 > speedLimit1){
+    		sped2 = speedLimit1;
+    	} if (sped2 < -speedLimit1){
+    		sped2 = -speedLimit1;
+    	}
+    	
+    	//deadzone
+    	double deadZone = 0.25;
+    	double fast = forttle.getY();
+    	if (fast > speedLimit1){
+    		fast = speedLimit1;
+    	} if (fast < -speedLimit1);
+    	double fast2 = forttle.getX();
+    	if (fast2 > speedLimit1){
+    		fast2 = speedLimit1;
+    	} if (fast2 < -speedLimit1){
+    		fast2 = -speedLimit1;
+    	}
+    	
+    	
+    	
+    	
+    	
     	
     	//elevator.drive(ada.getY());
     	
