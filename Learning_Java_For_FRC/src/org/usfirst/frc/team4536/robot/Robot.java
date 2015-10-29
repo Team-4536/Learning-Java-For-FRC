@@ -10,6 +10,8 @@ package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
+import java.lang.Math;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -20,6 +22,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team4536.robot.subsystems.*;
+import edu.wpi.first.wpilibj.Encoder;
 
 /**
  * @author Liam
@@ -46,7 +49,8 @@ public class Robot extends IterativeRobot {
 	 * =============================
 	 */
 	Joystick ada = new Joystick(0);
-	
+	Joystick sheila = new Joystick(1);
+	DriveTrain mareid = new DriveTrain(1,0);
 	/**
 	 * =====================
 	 * =====================
@@ -60,7 +64,8 @@ public class Robot extends IterativeRobot {
 							RobotMap.TOP_LIMIT_SWITCH,
 							RobotMap.MIDDLE_LIMIT_SWITCH,
 							RobotMap.BOTTOM_LIMIT_SWITCH);
-	
+	double prevThrottlee = 0;
+	//Encoder encoder = new Encoder(5,6);
 	/*
 			RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
 			RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
@@ -121,6 +126,10 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        
+        elevator.drive(1);
+        
+        
     }
 
     /**
@@ -138,6 +147,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	
     }
 
     /**
@@ -184,9 +194,21 @@ public class Robot extends IterativeRobot {
     	 */
     	//elevator.drive(ada.getY());
     	
+    	mareid.arcadeDrive(sheila.getY(),sheila.getX());
+    
 
     	double throttlee = ada.getY();
-    	double speedLimit = 0.25;
+    	double speedLimit = 0.75;
+    	
+    	double speedcurve = 20;
+    	if(throttlee > 0) {
+    		throttlee = Math.pow(throttlee, speedcurve);
+    	}
+    	if(throttlee < 0) {
+    		throttlee = -Math.pow(throttlee, speedcurve);
+    	}
+    	
+    	
     	
     	if (throttlee > speedLimit){
     		throttlee = speedLimit;
@@ -194,7 +216,23 @@ public class Robot extends IterativeRobot {
     		throttlee = -speedLimit;
     	}
     	
+    	double accel = (throttlee - prevThrottlee)/0.2;
+    	double accelLimit = 0.01;
+    	prevThrottlee = throttlee;
+    	if (accel > accelLimit){
+    		throttlee = prevThrottlee + accelLimit;
+    	} if (accel < -accelLimit){
+    		throttlee = prevThrottlee - accelLimit;
+    	}
+    	
+    	System.out.println("Acceleration: " + accel);
+    	System.out.println("Throttle: " + throttlee);
+    	System.out.println("Previous Throttle: " + prevThrottlee);
+    	//System.out.println("Ticks: " + encoder.get());
     	elevator.drive(throttlee);
+    	
+    
+    	
     	
     	
     	
