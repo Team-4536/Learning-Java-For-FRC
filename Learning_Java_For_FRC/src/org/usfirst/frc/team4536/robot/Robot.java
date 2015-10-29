@@ -10,9 +10,9 @@ package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 
-import org.usfirst.frc.team4536.robot.subsystems.RollerArm;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
@@ -25,41 +25,23 @@ import org.usfirst.frc.team4536.robot.subsystems.*;
 
 /**
  * @author Liam
- * Code runs in cycles of about 20 ms (miliseconds) so
- * it executes your code and any changes to your code
- * in 20 ms intervals. As you look through this code you
- * will see things ending with "init" and that means that
- * the code in there gets executed in only one cycle so
- * there's no dynamic changing of values. Things which end
- * with "periodic" update the robot every cycle of code while
- * the robot is in their corresponding mode (robot, disabled,
- * teleop, autonomous.) For example: teleopPeriodic would be
- * sending code with any changes to its values every 20 ms. This
- * is important when you're driving a robot off of a joystick so
- * the motors are getting as up to date values as possible.
+ 
  */
 public class Robot extends IterativeRobot {
 	
 	DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
 	
-	/**
-	 * =============================
-	 * =============================
-	 * MAKE A JOYSTICK BELOW HERE!!!
-	 * =============================
-	 * =============================
-	 */
-	Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
-	Joystick secondaryStick = new Joystick(RobotMap.SECONDARY_STICK);
+	boolean previousButtonState = false;
+	
+	double psi = 110;
 	
 	
-	/**
-	 * =====================
-	 * =====================
-	 * MAKE AN ELEVATOR HERE
-	 * =====================
-	 * =====================
-	 */
+		
+	
+	Joystick mainJoystick = new Joystick(0);
+	
+	Joystick secondJoystick = new Joystick(1);
+
 	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
 							RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
 							RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
@@ -75,122 +57,53 @@ public class Robot extends IterativeRobot {
 			RobotMap.BOTTOM_LIMIT_SWITCH);
 	*/
 	
-	/**
-	 * ====================
-	 * ====================
-	 * MAKE A PLATFORM HERE
-	 * ====================
-	 * ====================
-	 */
+
 	
-	Platform platform = new Platform(RobotMap.LEFT_PLATFORM_SOLENOID_CHANNEL, RobotMap.RIGHT_PLATFORM_SOLENOID_CHANNEL);
+	Platform platform1 = new Platform (3,2);
+	Compressor compressor = new Compressor ();
 	
-	/**
-	 * @author Liam
-	 * Put code here that you want to run ONCE at startup.
-	 * These will be the first things your code does.
-	 */
+	
     public void robotInit() {
     	
     }
 	
-    /**
-     * @author Liam
-     * Disabled periodic is when the robot has power and is turned on
-     * but we haven't enabled it. There shouldn't be any code running
-     * systems in here because it is highly unsafe because you can't
-     * stop the robot as easily while it's supposed to be disabled.
-     */
+   
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	/**
-	 * @author Liam
-	 * Autonomous is a period with no user control where
-	 * the robot operates all by itself.
-	 * autonomousInit is called ONCE. All values in here
-	 * are the first values executed in autonomous. Systems
-	 * will hold these values until given new ones. If I gave
-	 * the motors a value of "1" which indicates full speed
-	 * forward, the robot would go racing forward indefinitely
-	 * if I don't give it a different value in the next cycle
-	 * of code (which is autonomousPeriodic).
-	 */
+
     public void autonomousInit() {
     	
     }
 
-    /**
-     * @author Liam
-     * autonomousPeriodic is called every cycle of code
-     * after autonomousInit during the autonomous period
-     * (where the robot is controlling itself).
-     */
+   
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
     }
 
-    /**
-     * @author Liam
-     * Teleop is a period during which humans may operate
-     * the robot using controllers like joysticks,
-     * button boxes, or XBox controllers. TeleopInit is
-     * called ONCE at the beginning of the teleop period.
-     * You should make sure all autonomous commands are
-     * stopped at this point and new ones for teleop are
-     * given.
-     */
+ 
     public void teleopInit() {
 		// This makes sure that the autonomous stops running when
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	platform1.retract();
     }
 
-    /**
-     * @author Liam
-     * disabledInit is the first thing called when the disabled button is hit.
-     * Disabled is also the state you robot starts in.
-     * You can use it to reset subsystems before shutting down.
-     */
+   
     public void disabledInit(){
 
     }
 
-    /**
-     * TeleopPeriodic is the dynamic segment of teleop which updates code
-     * every cycle of code during the teleop period. Recall: a cycle of code
-     * is 20 ms. The teleop time period is 2 minutes and 10 - 15 seconds long
-     * in typical competition years so you update your robot with what's going
-     * on on your joystick alot!
-     */
-    /**
-     * ==========================================
-     * ==========================================
-     * FIRST DAY ROBOTICS STUDENTS CONTINUE HERE!
-     * ==========================================
-     * ==========================================
-     */
+   
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
+    	boolean currentButtonState = mainJoystick.getRawButton(4);
     	
-    	/**
-    	 * =============================================================
-    	 * =============================================================
-    	 * REPLACE THE "0.0"s WITH THE Y-AXIS and X-AXIS OF THE JOYSTICK
-    	 * =============================================================
-    	 * =============================================================
-    	 */
+    	
     	driveTrain.arcadeDrive(0.0, 0.0);
     	
-    	/**
-    	 * ===================================================
-    	 * ===================================================
-    	 * MAKE THE ELEVATOR DRIVE OFF OF A JOYSTICK AXIS HERE
-    	 * ===================================================
-    	 * ===================================================
-    	 */
     	
     	
     	//This prints out the elevator's height
@@ -198,35 +111,41 @@ public class Robot extends IterativeRobot {
     	
     	//This if is for some safety so you can't extend the platform and rip off our elevator.
     	if (elevator.getCurrentHeight() > Constants.PLATFORM_TOGGLE_HEIGHT_LIMIT) {
-    		
-    		/**
-    		 * ===================================================================
-    		 * ===================================================================
-    		 * Make the platform of the robot extend when a button is pressed here
-    		 * ===================================================================
-    		 * ===================================================================
-    		 */
-    		
-    		
-    		/**
-    		 * ====================================================================
-    		 * ====================================================================
-    		 * Make the platform of the robot retract when a button is pressed here
-    		 * ====================================================================
-    		 * ====================================================================
-    		 */
+    		if(currentButtonState && ! previousButtonState){
+    			if(platform1.isExtended()){
+    				platform1.retract();
+    				psi -= 30;
+    				System.out.println("psi dropping on retract");
+    			}
+    			else{
+    				platform1.extend();
+    				psi -= 30;
+    				System.out.println("psi dropping on extend");
+    			}
+    		}
     		
     		
     	}
     	
     	//This updates the elevator's height when it hits limit switches
+    	previousButtonState = currentButtonState;
     	elevator.update();
+    	if (compressor.getPressureSwitchValue()){
+    		psi = 110;
+    
+        }
+    	else{
+    		psi = (psi + .02);
+        	
+        }
+    	System.out.println("psi= " + psi);
+   
+
+    	
+    	
     }
     
-    /**
-     * testPeriodic executes its code every cycle except the first
-     * during the test period. The test period is just a way to test.
-     */
+   
     public void testPeriodic() {
         LiveWindow.run();
     }
