@@ -23,6 +23,8 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team4536.robot.subsystems.*;
 import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team4536.robot.commands.*;
+
 
 /**
  * @author Liam
@@ -51,6 +53,9 @@ public class Robot extends IterativeRobot {
 	Joystick ada = new Joystick(0);
 	Joystick sheila = new Joystick(1);
 	DriveTrain mareid = new DriveTrain(1,0);
+	Command elevatorDown = new ElevatorDownCommand();
+	Command elevatorUp = new ElevatorUpCommand();
+	Command autonomousCommands = new AutonomousCommandGroup();
 	/**
 	 * =====================
 	 * =====================
@@ -58,12 +63,12 @@ public class Robot extends IterativeRobot {
 	 * =====================
 	 * =====================
 	 */
-	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
-							RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
-							RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
-							RobotMap.TOP_LIMIT_SWITCH,
-							RobotMap.MIDDLE_LIMIT_SWITCH,
-							RobotMap.BOTTOM_LIMIT_SWITCH);
+	//Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
+							//RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
+							//RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
+							//RobotMap.TOP_LIMIT_SWITCH,
+							//RobotMap.MIDDLE_LIMIT_SWITCH,
+							//RobotMap.BOTTOM_LIMIT_SWITCH);
 	double prevThrottlee = 0;
 	//Encoder encoder = new Encoder(5,6);
 	/*
@@ -115,7 +120,13 @@ public class Robot extends IterativeRobot {
 	 * of code (which is autonomousPeriodic).
 	 */
     public void autonomousInit() {
-    	
+    	autonomousCommands.start();
+    	/*
+    	 * Starts autonomous sequence
+    	 * 
+    	 * elevator all the way down(full speed)
+    	 * elevator all the way up(half speed)
+    	 */
     }
 
     /**
@@ -127,7 +138,9 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
         
-        elevator.drive(1);
+        
+        
+        
         
         
     }
@@ -229,7 +242,7 @@ public class Robot extends IterativeRobot {
     	System.out.println("Throttle: " + throttlee);
     	System.out.println("Previous Throttle: " + prevThrottlee);
     	//System.out.println("Ticks: " + encoder.get());
-    	elevator.drive(throttlee);
+    	//elevator.drive(throttlee);
     	
     
     	
@@ -237,7 +250,7 @@ public class Robot extends IterativeRobot {
     	
     	
     	//This prints out the elevator's height
-    	System.out.println(elevator.getCurrentHeight());
+    	//System.out.println(elevator.getCurrentHeight());
     }
     
     /**
