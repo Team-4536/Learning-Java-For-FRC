@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Gyro;
 
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
 
@@ -44,7 +45,7 @@ public class Robot extends IterativeRobot {
 	DriveTrain drivetrain = new DriveTrain(1,0);
 	
 	
-
+	Gyro gyro1 = new Gyro(RobotMap.GYRO);
 	
 	Joystick mainJoystick = new Joystick(0);
 	
@@ -67,6 +68,7 @@ public class Robot extends IterativeRobot {
 	
 	
     public void robotInit() {
+    	gyro1.initGyro();
     	
     }
 	
@@ -105,6 +107,8 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
     	boolean currentButtonState = mainJoystick.getRawButton(4);
+    	
+    	double angle = gyro1.getAngle();
     	
 
     	
@@ -159,6 +163,11 @@ public class Robot extends IterativeRobot {
     	//This prints out the elevator's height
     	System.out.println(elevator.getCurrentHeight());
 
+    	if ( angle == 69 ){
+    		
+    		System.out.println("lol 69");
+    		
+    	}
     	
     	//This if is for some safety so you can't extend the platform and rip off our elevator.
     	if (elevator.getCurrentHeight() > Constants.PLATFORM_TOGGLE_HEIGHT_LIMIT) {
@@ -190,6 +199,8 @@ public class Robot extends IterativeRobot {
         	
         }
     	System.out.println("psi= " + psi);
+    	
+    	System.out.println("angle = " + angle);
    
 
     	
