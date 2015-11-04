@@ -35,20 +35,12 @@ public class Robot extends IterativeRobot {
 	boolean previousButtonState = false;
 	
 	double psi = 110;
-
 	
-	Joystick forttle = new Joystick(1);
-	Joystick ada = new Joystick(0);
-	
-
 	DriveTrain drivetrain = new DriveTrain(1,0);
 	
+	Joystick mainStick = new Joystick(0);
 	
-
-	
-	Joystick mainJoystick = new Joystick(0);
-	
-	Joystick secondJoystick = new Joystick(1);
+	Joystick secondStick = new Joystick(1);
 
 
 	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
@@ -104,17 +96,17 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
-    	boolean currentButtonState = mainJoystick.getRawButton(4);
+    	boolean currentButtonState = mainStick.getRawButton(4);
     	
 
     	
-    	drivetrain.arcadeDrive(forttle.getY(), forttle.getX());
+    	drivetrain.arcadeDrive(mainStick.getY(), mainStick.getX());
     	double speedLimit1 = 0.25;
-    	double sped = forttle.getY();
+    	double sped = mainStick.getY();
     	if (sped > speedLimit1){
     		sped = speedLimit1;
     	} if (sped < -speedLimit1);
-    	double sped2 = forttle.getX();
+    	double sped2 = mainStick.getX();
     	if (sped2 > speedLimit1){
     		sped2 = speedLimit1;
     	} if (sped2 < -speedLimit1){
@@ -123,11 +115,11 @@ public class Robot extends IterativeRobot {
     	
     	//deadzone
     	double deadZone = 0.25;
-    	double fast = forttle.getY();
+    	double fast = mainStick.getY();
     	if (fast > speedLimit1){
     		fast = speedLimit1;
     	} if (fast < -speedLimit1);
-    	double fast2 = forttle.getX();
+    	double fast2 = mainStick.getX();
     	if (fast2 > speedLimit1){
     		fast2 = speedLimit1;
     	} if (fast2 < -speedLimit1){
@@ -142,7 +134,7 @@ public class Robot extends IterativeRobot {
     	//elevator.drive(ada.getY());
     	
 
-    	double throttlee = ada.getY();
+    	double throttlee = secondStick.getY();
     	double speedLimit = 1.0;
     	
     	if (throttlee > speedLimit){
