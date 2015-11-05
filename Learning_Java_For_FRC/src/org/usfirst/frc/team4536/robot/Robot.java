@@ -9,8 +9,6 @@
 package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.command.Command;
@@ -19,6 +17,8 @@ import org.usfirst.frc.team4536.robot.commands.CommandBase;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.Joystick;
 
 import org.usfirst.frc.team4536.robot.subsystems.*;
@@ -34,22 +34,25 @@ public class Robot extends IterativeRobot {
 	
 	boolean previousButtonState = false;
 	
-	double psi = 110;
+	boolean currentButtonState = false; 
+	
+	double psi = 110; 
+	
+	double driveControl = 1;
+
+	public static Button mainControl;
+	public static Button slowControl;
+	public static Button exponentialControl;
+	
 
 	
-	Joystick forttle = new Joystick(1);
+	Joystick mainstick = new Joystick(1);
 	Joystick ada = new Joystick(0);
 	
 
 	DriveTrain drivetrain = new DriveTrain(1,0);
 	
 	
-
-	
-	Joystick mainJoystick = new Joystick(0);
-	
-	Joystick secondJoystick = new Joystick(1);
-
 
 	Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
 							RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
@@ -64,12 +67,15 @@ public class Robot extends IterativeRobot {
 	Platform platform1 = new Platform (3,2);
 	Compressor compressor = new Compressor ();
 
-	
+	mainstick getRawButton(1);
 	
     public void robotInit() {
     	
     }
 	
+	mainControl = new JoystickButton(maisStick, 3);
+	slowControl = new JoystickButton(mainstick, 2);
+	exponetionalControl = new JoystickButton(mainstick, 5);
    
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
@@ -104,51 +110,43 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         // IGNORE THIS LINE Scheduler.getInstance().run();
-    	boolean currentButtonState = mainJoystick.getRawButton(4);
+    	boolean currentButtonState = mainstick.getRawButton(4);
     	
 
     	
-    	drivetrain.arcadeDrive(forttle.getY(), forttle.getX());
-    	double speedLimit1 = 0.25;
-    	double sped = forttle.getY();
-    	if (sped > speedLimit1){
-    		sped = speedLimit1;
-    	} if (sped < -speedLimit1);
-    	double sped2 = forttle.getX();
-    	if (sped2 > speedLimit1){
-    		sped2 = speedLimit1;
-    	} if (sped2 < -speedLimit1){
-    		sped2 = -speedLimit1;
+    	drivetrain.arcadeDrive(mainstick.getY(), mainstick.getX());
+    	
+    	if (driveControl == 2){
+    	
+       	double speedLimit = 0.7;
+    	double mainstickSped = mainstick.getX();
+    	
+    	if (mainstickSped > speedLimit){
+    		mainstickSped = speedLimit;
+    	} if (mainstickSped < - speedLimit){
+    		mainstickSped = speedLimit;
+    		
     	}
+	double mainstickSped2 = mainstick.getY();
     	
-    	//deadzone
-    	double deadZone = 0.25;
-    	double fast = forttle.getY();
-    	if (fast > speedLimit1){
-    		fast = speedLimit1;
-    	} if (fast < -speedLimit1);
-    	double fast2 = forttle.getX();
-    	if (fast2 > speedLimit1){
-    		fast2 = speedLimit1;
-    	} if (fast2 < -speedLimit1){
-    		fast2 = -speedLimit1;
+    	if (mainstickSped2 > speedLimit){
+    		mainstickSped2 = speedLimit;
+    	} if (mainstickSped2 < - speedLimit){
+    		mainstickSped2 = speedLimit;
     	}
-    	
-    	
-    	
-    	
-    	
+  
+    	}
     	
     	//elevator.drive(ada.getY());
     	
 
-    	double throttlee = ada.getY();
-    	double speedLimit = 1.0;
+    double throttlee = ada.getY();{
+    
     	
-    	if (throttlee > speedLimit){
-    		throttlee = speedLimit;
-    	} if (throttlee < -speedLimit){
-    		throttlee = -speedLimit;
+    	if (throttlee > 0.7){
+    		throttlee = 0.7;
+    	} if (throttlee < -0.7){
+    		throttlee = -0.7;
     	}
     	
     	elevator.drive(throttlee);
@@ -190,6 +188,7 @@ public class Robot extends IterativeRobot {
         	
         }
     	System.out.println("psi= " + psi);
+    }
    
 
     	
