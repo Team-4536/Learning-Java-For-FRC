@@ -122,24 +122,15 @@ public class Robot extends IterativeRobot {
     	//deadzone
     	double deadZone = 0.05;
     	
-    	if (velocityY < deadZone){
+    	if (velocityY < deadZone && velocityY > -deadZone){
     		
     		velocityY = 0;
     	} 
-    	if (velocityY > -deadZone) {
-    		
-    		velocityY = 0;
-    	};
-    	
-    	if (velocityX < deadZone){
+    	if (velocityX < deadZone && velocityX > -deadZone){
     		
     		velocityX = 0;
     	}
-    	if (velocityX > -deadZone){
-    		
-    		velocityX = -0;
-    	}
-    	
+
     	driveTrain.arcadeDrive(velocityY, velocityX);
     	
     	
@@ -148,19 +139,19 @@ public class Robot extends IterativeRobot {
     	//elevator.drive(ada.getY());
     	
 
-    	double throttlee = secondStick.getY();
+    	double throttle = secondStick.getY();
     	double elevatorSpeedLimit = 1.0;
     	
-    	if (throttlee > elevatorSpeedLimit){
+    	if (throttle > elevatorSpeedLimit){
     		
-    		throttlee = elevatorSpeedLimit;
+    		throttle = elevatorSpeedLimit;
     	}
-    	if (throttlee < -elevatorSpeedLimit){
+    	if (throttle < -elevatorSpeedLimit){
     		
-    		throttlee = -elevatorSpeedLimit;
+    		throttle = -elevatorSpeedLimit;
     	}
     	
-    	elevator.drive(throttlee);
+    	elevator.drive(throttle);
     	
 
     	
