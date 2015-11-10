@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public abstract class CommandBase extends Command {
 	
 	//public static PIDDriveTrain driveTrain = new PIDDriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR, RobotMap.GYRO);
-	public static CompressorSubsystem compSub = new CompressorSubsystem();
+	//public static CompressorSubsystem compSub = new CompressorSubsystem();
 	public static Elevator elevator = new Elevator(RobotMap.ELEVATOR_MOTOR,
 			RobotMap.ELEVATOR_ENCODER_A_CHANNEL,
 			RobotMap.ELEVATOR_ENCODER_B_CHANNEL,
