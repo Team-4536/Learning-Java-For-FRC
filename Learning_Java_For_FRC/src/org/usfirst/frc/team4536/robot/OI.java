@@ -11,14 +11,23 @@
 package org.usfirst.frc.team4536.robot;
 
 import edu.wpi.first.wpilibj.buttons.Button;
+import org.usfirst.frc.team4536.robot.commands.*;
 import edu.wpi.first.wpilibj.Joystick;
+
 
 /**
  * This class is where the magic happens. It's where you handle the controller that you're using to drive your robot!
  * "public" means that stuff can be accessed from other classes. Classes for non-programmers, I like to think of like sections.
  */
 public class OI {
+	
+	public static Joystick mainStick;
+
+	public OI(){
+	
+	mainStick = new Joystick(RobotMap.MAIN_STICK);
 
 	
+	}
 }
 

@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
+import org.usfirst.frc.team4536.robot.commands.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Joystick;
@@ -34,15 +35,11 @@ import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
  */
 public class Robot extends IterativeRobot {
 	
-	DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
+	public static OI oi;
 	
-	/**
-	 * =============================
-	 * =============================
-	 * MAKE A JOYSTICK BELOW HERE!!!
-	 * =============================
-	 * =============================
-	 */
+	DriveTrainCommand driveTrainCommand;
+	
+	
 
 	/**
 	 * @author Liam
@@ -51,6 +48,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void robotInit() {
     	
+    	oi = new OI();
+    	driveTrainCommand = new DriveTrainCommand();
     }
 	
     /**
@@ -105,7 +104,14 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    }
+    	
+    	if(driveTrainCommand != null){
+    		
+    		driveTrainCommand.start();
+    	}
+    		
+    	}
+    
 
     /**
      * @author Liam
@@ -124,23 +130,10 @@ public class Robot extends IterativeRobot {
      * in typical competition years so you update your robot with what's going
      * on on your joystick alot!
      */
-    /**
-     * ==========================================
-     * ==========================================
-     * FIRST DAY ROBOTICS STUDENTS CONTINUE HERE!
-     * ==========================================
-     * ==========================================
-     */
+  
     public void teleopPeriodic() {
-        // IGNORE THIS LINE Scheduler.getInstance().run();
-    	/**
-    	 * =============================================================
-    	 * =============================================================
-    	 * REPLACE THE "0.0"s WITH THE Y-AXIS and X-AXIS OF THE JOYSTICK
-    	 * =============================================================
-    	 * =============================================================
-    	 */
-    	driveTrain.arcadeDrive(0.0, 0.0);
+       Scheduler.getInstance().run();
+    	
 
     }
     
