@@ -1,7 +1,7 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
-
+import org.usfirst.frc.team4536.robot.*;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -22,7 +22,7 @@ public class DriveTrainCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	driveTrain.arcadeDrive(OI.mainStick.getY(), OI.mainStick.getX());
+    	driveTrain.arcadeDrive(Utilities.speedCurve(Utilities.limit(OI.mainStick.getY(), 1.0), 2.5), Utilities.speedCurve(Utilities.limit(OI.mainStick.getX(), 1.0), 2.5));
     }
 
     // Make this return true when this Command no longer needs to run execute()
