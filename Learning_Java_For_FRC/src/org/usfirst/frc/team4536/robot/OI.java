@@ -20,14 +20,7 @@ import edu.wpi.first.wpilibj.Joystick;
  * "public" means that stuff can be accessed from other classes. Classes for non-programmers, I like to think of like sections.
  */
 public class OI {
-	
-	public static Joystick mainStick;
 
-	public OI(){
+	public static Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
 	
-	mainStick = new Joystick(RobotMap.MAIN_STICK);
-
-	
-	}
 }
-

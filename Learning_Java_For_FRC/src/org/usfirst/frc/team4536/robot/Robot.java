@@ -7,8 +7,8 @@
  * collection data from robot systems and interfacing with joysticks!
  */
 package org.usfirst.frc.team4536.robot;
-
 import edu.wpi.first.wpilibj.IterativeRobot;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
@@ -17,7 +17,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.Joystick;
 import org.usfirst.frc.team4536.robot.subsystems.DriveTrain;
-
+import org.usfirst.frc.team4536.robot.subsystems.Piston;
+import org.usfirst.frc.team4536.robot.OI;
 /**
  * @author Liam
  * Code runs in cycles of about 20 ms (miliseconds) so
@@ -39,8 +40,8 @@ public class Robot extends IterativeRobot {
 	
 	DriveTrainCommand driveTrainCommand;
 	
+	Piston piston = new Piston(RobotMap.RIGHT_SOLENOID, RobotMap.LEFT_SOLENOID);
 	
-
 	/**
 	 * @author Liam
 	 * Put code here that you want to run ONCE at startup.
@@ -48,7 +49,9 @@ public class Robot extends IterativeRobot {
 	 */
     public void robotInit() {
     	
+    	
     	oi = new OI();
+    	
     	driveTrainCommand = new DriveTrainCommand();
     }
 	
@@ -58,11 +61,11 @@ public class Robot extends IterativeRobot {
      * but we haven't enabled it. There shouldn't be any code running
      * systems in here because it is highly unsafe because you can't
      * stop the robot as easily while it's supposed to be disabled.
-     */
+     */;
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
-
+	
 	/**
 	 * @author Liam
 	 * Autonomous is a period with no user control where
@@ -133,7 +136,12 @@ public class Robot extends IterativeRobot {
   
     public void teleopPeriodic() {
        Scheduler.getInstance().run();
-    	
+       boolean extend = OI.mainStick.getRawButton(3);
+       
+       if(extend = true){
+    	   
+    	   piston.extend();
+       }
 
     }
     
