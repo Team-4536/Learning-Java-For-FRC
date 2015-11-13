@@ -44,17 +44,21 @@ public class Utilities {
 	
 	/**
 	 * @author Audrey
-	 * @param speed to be limited
-	 * @param curve speed to negative or positive speed
+	 * @param speed between -1 and 1 to be limited
+	 * @param curve can not be negative, curves speed to negative or positive speed
 	 * @return curved speed
 	 */
 	public static double speedCurve(double speed, double curve){
+		double limitedCurve = curve;
+		if(curve < 0){
+			limitedCurve = 0;
+		}
 		if(speed < 0){
-			speed = -(Math.pow(-speed, curve))
+			speed = -(Math.pow(-speed, limitedCurve))
 					;
 		}
 		else{
-			speed = Math.pow(speed, curve);
+			speed = Math.pow(speed, limitedCurve);
 		}
 		return speed;
 	}
