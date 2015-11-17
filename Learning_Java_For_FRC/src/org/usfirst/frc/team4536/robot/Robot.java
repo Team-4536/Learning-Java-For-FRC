@@ -8,12 +8,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
-import org.usfirst.frc.team4536.robot.Utilities;
 import org.usfirst.frc.team4536.robot.subsystems.*;
 import org.usfirst.frc.team4536.robot.commands.*;
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
 
-/**
+
+
+/*
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
  * documentation. If you change the name of this class or the package after
@@ -22,7 +23,7 @@ import org.usfirst.frc.team4536.robot.commands.CommandBase;
  */
 public class Robot extends IterativeRobot {
 
-	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
+
 	public static OI oi;
 	
 	Command elevatorCommand;
@@ -38,13 +39,14 @@ public class Robot extends IterativeRobot {
     Command fileReadCommand;
     SendableChooser autoChooser;
 
+    Elevator elevator;
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
+    	elevator = new Elevator(RobotMap.ELEVATOR_MOTOR);
 		oi = new OI();
-		elevatorCommand = new ElevatorCommand();
        /* // instantiate the command used for the autonomous period
         autonomousCommand = new ExampleCommand();
         rightFeederStationAuto = new RightFeederStationAutonomous();
@@ -150,6 +152,7 @@ public class Robot extends IterativeRobot {
      */
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        elevator.drive(OI.secondaryStick.getY());
         /*SmartDashboard.putData(CommandBase.driveTrain);
         SmartDashboard.putData(CommandBase.elevator);*/
     }

@@ -9,10 +9,8 @@ import org.usfirst.frc.team4536.robot.subsystems.*;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- * 
- *
- */
+
+
 
 public abstract class CommandBase extends Command {
 	
@@ -29,8 +27,6 @@ public abstract class CommandBase extends Command {
 	public static Canburgler canburgler = new Canburgler(RobotMap.CANBURGLER_LEFT_SOLENOID_CHANNEL, 
 														 RobotMap.CANBURGLER_RIGHT_SOLENOID_CHANNEL);
 */
-	Elevator elevator = new Elevator(2);
-	
     public CommandBase() {
         // Use requires() here to declare subsystem dependencies
      //eg. requires(chassis);
