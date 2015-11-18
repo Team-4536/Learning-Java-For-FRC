@@ -2,13 +2,12 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
 
-import edu.wpi.first.wpilibj.Jaguar;
-import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team4536.robot.commands.CommandBase;
 
 /**
  * 
  */
-public class ElevatorCommand extends Command {
+public class ElevatorCommand extends CommandBase {
 
     public ElevatorCommand() {
         // Use requires() here to declare subsystem dependencies

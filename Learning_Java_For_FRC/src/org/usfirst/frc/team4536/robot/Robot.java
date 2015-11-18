@@ -38,6 +38,7 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	
 	DriveTrainCommand driveTrainCommand;
+	ElevatorCommand elevatorCommand;
 	
 	
 
@@ -50,6 +51,7 @@ public class Robot extends IterativeRobot {
     	
     	oi = new OI();
     	driveTrainCommand = new DriveTrainCommand();
+    	elevatorCommand = new ElevatorCommand();
     }
 	
     /**
@@ -108,6 +110,12 @@ public class Robot extends IterativeRobot {
     	if(driveTrainCommand != null){
     		
     		driveTrainCommand.start();
+    	}
+    	
+    	if(elevatorCommand != null){
+    		
+    		elevatorCommand.start();
+    		
     	}
     		
     	}
