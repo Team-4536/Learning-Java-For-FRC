@@ -22,10 +22,12 @@ import edu.wpi.first.wpilibj.Joystick;
 public class OI {
 	
 	public static Joystick mainStick;
+	public static Joystick secondStick;
 
 	public OI(){
 	
 	mainStick = new Joystick(RobotMap.MAIN_STICK);
+	secondStick = new Joystick(RobotMap.SECONDARY_STICK);
 
 	
 	}
