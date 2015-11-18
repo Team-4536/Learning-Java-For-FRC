@@ -54,13 +54,33 @@ public class Utilities {
 			limitedCurve = 0;
 		}
 		if(speed < 0){
-			speed = -(Math.pow(-speed, limitedCurve))
-					;
+			speed = -(Math.pow(-speed, limitedCurve));
 		}
 		else{
 			speed = Math.pow(speed, limitedCurve);
 		}
 		return speed;
+	}
+	
+	/**
+	 * @author Audrey
+	 * @param throttle input throttle to be limited
+	 * @param prevThrottle input previous throttle
+	 * @param accelerationLimit limits throttle to acceleration limit if increased by more than acceleration limit 
+	 * 		or decreased by more than acceleration limit
+	 * @return limited throttle
+	 */
+	public static double accelLimit(double throttle, double prevThrottle, double accelerationLimit){
+		double limitedThrottle = throttle;
+		double throttleDiff = throttle - prevThrottle;
+		double modifiedAccelLimit = 0.02 / accelerationLimit;
+		if(throttleDiff > modifiedAccelLimit){
+			limitedThrottle = prevThrottle + modifiedAccelLimit;
+		}
+		else if(throttleDiff < -modifiedAccelLimit){
+			limitedThrottle = prevThrottle - modifiedAccelLimit;
+		}
+		return limitedThrottle;
 	}
 	
 	
