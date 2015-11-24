@@ -12,8 +12,7 @@ public class Elevator extends Subsystem {
      jmotor = new Jaguar(jaguarChannel);
      limitSwitch = new DigitalInput(3);
     }
-     //TODO  Make public boolean getLimitSwitchValueS
-    // Put methods for controlling this subsystem
+        // Put methods for controlling this subsystem
     // here. Call these from Commands.
     public boolean sensor(){
     	if(limitSwitch.get()){
