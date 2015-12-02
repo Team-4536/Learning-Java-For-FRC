@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
 	ElevatorUpCommand elevatorUpCommand;
+	ElevatorDownCommand elevatorDownCommand;
 	
 	
 
@@ -54,6 +55,7 @@ public class Robot extends IterativeRobot {
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
     	elevatorUpCommand = new ElevatorUpCommand();
+    	elevatorDownCommand = new ElevatorDownCommand();
     }
 	
     /**
@@ -84,6 +86,10 @@ public class Robot extends IterativeRobot {
     	
     	if(elevatorUpCommand != null) {
     		elevatorUpCommand.start(0.5);
+    	}
+    	
+    	if(elevatorDownCommand != null) {
+    		elevatorDownCommand.start(0.5);
     	}
     	
     	System.out.println("autonomous init completed.");
