@@ -31,6 +31,9 @@ public class DriveTrainCommand extends CommandBase {
     	double forwardThrottle = OI.mainStick.getY();
     	double turnThrottle = OI.mainStick.getX();
     	
+    	forwardThrottle = Utilities.deadZone(forwardThrottle, 0.1);
+    	turnThrottle = Utilities.deadZone(turnThrottle, 0.1);
+    	
     	forwardThrottle = Utilities.limit(forwardThrottle, 1.0);
     	turnThrottle = Utilities.limit(turnThrottle, 1.0);
     	
