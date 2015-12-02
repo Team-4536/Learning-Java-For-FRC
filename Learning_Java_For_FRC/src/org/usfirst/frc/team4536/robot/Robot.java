@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
 	
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
+	ElevatorUpCommand elevatorUpCommand;
 	
 	
 
@@ -52,6 +53,7 @@ public class Robot extends IterativeRobot {
     	oi = new OI();
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
+    	elevatorUpCommand = new ElevatorUpCommand();
     }
 	
     /**
@@ -78,7 +80,13 @@ public class Robot extends IterativeRobot {
 	 * of code (which is autonomousPeriodic).
 	 */
     public void autonomousInit() {
+    	System.out.println("autonomous init initialized.");
     	
+    	if(elevatorUpCommand != null) {
+    		elevatorUpCommand.start();
+    	}
+    	
+    	System.out.println("autonomous init completed.");
     }
 
     /**
