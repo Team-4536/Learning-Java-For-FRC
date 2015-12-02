@@ -83,7 +83,7 @@ public class Robot extends IterativeRobot {
     	System.out.println("autonomous init initialized.");
     	
     	if(elevatorUpCommand != null) {
-    		elevatorUpCommand.start();
+    		elevatorUpCommand.start(0.5);
     	}
     	
     	System.out.println("autonomous init completed.");
@@ -114,6 +114,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	System.out.println("teleop init initialized.");
     	
     	if(driveTrainCommand != null){
     		
@@ -125,6 +126,8 @@ public class Robot extends IterativeRobot {
     		elevatorCommand.start();
     		
     	}
+    	
+    	System.out.println("teleop init ifinished.");
     		
     	}
     

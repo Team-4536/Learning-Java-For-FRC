@@ -8,7 +8,15 @@ import org.usfirst.frc.team4536.robot.commands.CommandBase;
  * 
  */
 public class ElevatorUpCommand extends CommandBase {
-
+	
+	private double speed;
+	
+	public void start(double spd) {
+		speed = spd;
+		start();
+	}
+	
+	
     public ElevatorUpCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -22,8 +30,7 @@ public class ElevatorUpCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.drive(0.1);
-    	//TODO unhardcode drive speed
+    	elevator.drive(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
