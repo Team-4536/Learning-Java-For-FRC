@@ -83,5 +83,18 @@ public class Utilities {
 		return limitedThrottle;
 	}
 	
-	
+	/**
+	 * @author Audrey
+	 * @param limited speed speed to be limited
+	 * @param zone that makes speed O
+	 * @param speed is 0 if it is bewteen zone and -zone
+	 * @return limited speed
+	 */
+	public static double deadZone(double speed, double zone){
+		double limitedSpeed = speed;
+		if(limitedSpeed < zone && limitedSpeed > -zone){
+			speed = 0;
+		}
+		return speed;
+	}
 }
