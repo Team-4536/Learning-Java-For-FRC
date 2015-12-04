@@ -84,13 +84,16 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
     	System.out.println("autonomous init initialized.");
     	
+    	if(elevatorDownCommand != null) {
+    		elevatorDownCommand.start(0.5);
+    	}
+    	
     	if(elevatorUpCommand != null) {
     		elevatorUpCommand.start(0.5);
     	}
     	
-    	if(elevatorDownCommand != null) {
-    		elevatorDownCommand.start(0.5);
-    	}
+    	//TODO test driveForwardCommand
+    	//TODO test .start(speed)
     	
     	System.out.println("autonomous init completed.");
     }
