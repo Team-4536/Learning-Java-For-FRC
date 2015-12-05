@@ -2,24 +2,18 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team4536.robot.RobotMap;
-import org.usfirst.frc.team4536.robot.subsystems.*;
-
 /**
  *
  */
-public abstract class CommandBase extends Command {
+public class Piston_Extend extends CommandBase {
 
-	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
-	public static Piston piston = new Piston(RobotMap.LEFT_SOLENOID, RobotMap.RIGHT_SOLENOID);
-	
-    public CommandBase() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    public Piston_Extend() {
+    	requires (piston);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    piston.extend();
     }
 
     // Called repeatedly when this Command is scheduled to run
