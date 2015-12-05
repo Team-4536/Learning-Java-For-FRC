@@ -5,7 +5,7 @@ import java.lang.Math;
 public class Utilities {
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param speed to be limited
 	 * @param min speed will be no less than.
 	 * @param max speed will be no greater than
@@ -22,7 +22,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param speed to be limited
 	 * @param bound speed will be no less than negative bound and no greater than positive bound
 	 * @return speed between negative bound and positive bound
@@ -33,7 +33,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param speed will be no greater than 1 and no less than -1
 	 * @return speed between 1 and -1
 	 */
@@ -43,7 +43,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param speed between -1 and 1 to be limited
 	 * @param curve can not be negative, curves speed to negative or positive speed
 	 * @return curved speed
@@ -63,7 +63,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param throttle input throttle to be limited
 	 * @param prevThrottle input previous throttle
 	 * @param accelerationLimit limits throttle to acceleration limit if increased by more than acceleration limit 
@@ -84,7 +84,7 @@ public class Utilities {
 	}
 	
 	/**
-	 * @author Audrey
+	 * @author Nerd
 	 * @param limited speed speed to be limited
 	 * @param zone that makes speed O
 	 * @param speed is 0 if it is bewteen zone and -zone

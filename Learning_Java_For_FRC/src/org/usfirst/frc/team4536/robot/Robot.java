@@ -6,8 +6,7 @@
  * take care of the base code of running a robot such as 
  * collection data from robot systems and interfacing with joysticks!
  */
-package org.usfirst.frc.team4536.robot;
-
+package org.usfirst.frc.team4536.robot; 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -39,7 +38,7 @@ public class Robot extends IterativeRobot {
 	
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
-	
+	SmartDash smartdashCommand;
 	
 
 	/**
@@ -117,8 +116,13 @@ public class Robot extends IterativeRobot {
     		elevatorCommand.start();
     		
     	}
+    	if(smartdashCommand != null){
+    	
+    		smartdashCommand.start();
     		
     	}
+    	
+    		
     
 
     /**

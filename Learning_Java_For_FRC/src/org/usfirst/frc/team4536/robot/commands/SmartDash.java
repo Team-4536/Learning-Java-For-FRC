@@ -1,19 +1,17 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team4536.robot.RobotMap;
-import org.usfirst.frc.team4536.robot.subsystems.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team4536.robot.OI;
 
 /**
  *
  */
-public abstract class CommandBase extends Command {
-
-	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
-	public static Elevator elevator = new Elevator(RobotMap.ELEVATOR_CHANNEL);
+public class SmartDash extends CommandBase {
 	
-    public CommandBase() {
+	
+
+    public SmartDash() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -25,8 +23,9 @@ public abstract class CommandBase extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
+    	SmartDashboard.putNumber("ForttleXaxis",OI.mainStick.getX());
+    	
     }
-   
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
