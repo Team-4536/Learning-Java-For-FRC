@@ -1,14 +1,16 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
-
+import org.usfirst.frc.team4536.robot.Utilities;
 import org.usfirst.frc.team4536.robot.commands.CommandBase;
 
 /**
  * 
  */
 public class ElevatorCommand extends CommandBase {
-
+	
+	double prevElevatorThrottle = 0;
+	
     public ElevatorCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -22,7 +24,17 @@ public class ElevatorCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	elevator.drive(OI.secondStick.getY());
+    	
+    	double elevatorThrottle = OI.secondStick.getY();
+    	
+    	elevatorThrottle = Utilities.deadZone(elevatorThrottle, 0.1);
+    	elevatorThrottle = Utilities.limit(elevatorThrottle, 1.0);
+    	elevatorThrottle = Utilities.speedCurve(elevatorThrottle, 2.5);
+    	elevatorThrottle = Utilities.accelLimit(elevatorThrottle, prevElevatorThrottle, 2);
+    	
+    	elevator.drive(elevatorThrottle);
+    	
+    	prevElevatorThrottle = elevatorThrottle;
     }
 
     // Make this return true when this Command no longer needs to run execute()
