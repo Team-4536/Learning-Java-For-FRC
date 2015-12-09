@@ -9,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.command.Command;
 
-
-
 public class Robot extends IterativeRobot {
 	DriveTrainCommand driveTrainCommand;
 	Command pistonCommand;
@@ -21,7 +19,7 @@ public class Robot extends IterativeRobot {
     }
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-	}	
+	}
     public void autonomousInit() {
     }
     public void autonomousPeriodic() {
@@ -34,8 +32,7 @@ public class Robot extends IterativeRobot {
     	if(pistonCommand != null){
     		pistonCommand.start();
     	}
-    	
-    	
+ 	
     }
     
     
