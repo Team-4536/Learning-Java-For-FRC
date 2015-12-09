@@ -53,5 +53,25 @@ public class DriveTrain extends Subsystem {
     	leftTalon.set(leftTalonThrottle);
     	rightTalon.set(rightTalonThrottle);
     }
+    
+    /**
+     * @author Audrey
+     * @return left talon motor value
+     */
+    public double getLeftThrottle(){
+    	
+    	return leftTalon.get();
+    	
+    }
+    
+    /**
+     * @author Audrey
+     * @return right talon motor value
+     */
+    public double getRightThrottle(){
+    	
+    	return rightTalon.get();
+    	
+    }
 }
 
