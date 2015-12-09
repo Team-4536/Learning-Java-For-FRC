@@ -12,8 +12,8 @@ public class AutonomousCommandGroup extends CommandGroup {
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
-    	addSequential(new ElevatorUpCommand());
     	addSequential(new ElevatorDownCommand());
+    	addSequential(new ElevatorUpCommand());
 
         // To run multiple commands at the same time,
         // use addParallel()

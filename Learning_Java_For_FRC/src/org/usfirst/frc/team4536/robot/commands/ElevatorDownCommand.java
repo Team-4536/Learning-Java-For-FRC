@@ -32,7 +32,7 @@ public class ElevatorDownCommand extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (timer.get() > 2000000) {
+    	if (timer.get() > 500000) {
     		return true;
     	}
         return false;
