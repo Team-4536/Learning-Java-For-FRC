@@ -41,6 +41,8 @@ public class Robot extends IterativeRobot {
 	ElevatorCommand elevatorCommand;
 	ElevatorUpCommand elevatorUpCommand;
 	ElevatorDownCommand elevatorDownCommand;
+	DriveForwardCommand driveForwardCommand;
+	AutonomousCommandGroup autoCommandGroup;
 	
 	
 
@@ -56,6 +58,8 @@ public class Robot extends IterativeRobot {
     	elevatorCommand = new ElevatorCommand();
     	elevatorUpCommand = new ElevatorUpCommand();
     	elevatorDownCommand = new ElevatorDownCommand();
+    	driveForwardCommand = new DriveForwardCommand();
+    	autoCommandGroup = new AutonomousCommandGroup();
     }
 	
     /**
@@ -83,18 +87,6 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	System.out.println("autonomous init initialized.");
-    	
-    	if(elevatorDownCommand != null) {
-    		elevatorDownCommand.start(0.5);
-    	}
-    	
-    	if(elevatorUpCommand != null) {
-    		elevatorUpCommand.start(0.5);
-    	}
-    	
-    	//TODO test driveForwardCommand
-    	//TODO test .start(speed)
-    	
     	System.out.println("autonomous init completed.");
     }
 
@@ -105,6 +97,10 @@ public class Robot extends IterativeRobot {
      * (where the robot is controlling itself).
      */
     public void autonomousPeriodic() {
+    	System.out.println("autonomousPeriodic running.");
+    	if(autoCommandGroup != null) {
+    		autoCommandGroup.start();    		
+    	}
         Scheduler.getInstance().run();
     }
 
@@ -123,6 +119,8 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to 
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	
+    	
     	System.out.println("teleop init initialized.");
     	
     	if(driveTrainCommand != null){
@@ -136,7 +134,7 @@ public class Robot extends IterativeRobot {
     		
     	}
     	
-    	System.out.println("teleop init ifinished.");
+    	System.out.println("teleop init finished.");
     		
     	}
     
@@ -156,7 +154,7 @@ public class Robot extends IterativeRobot {
      * every cycle of code during the teleop period. Recall: a cycle of code
      * is 20 ms. The teleop time period is 2 minutes and 10 - 15 seconds long
      * in typical competition years so you update your robot with what's going
-     * on on your joystick alot!
+     * on on your joystick a lot!
      */
   
     public void teleopPeriodic() {
