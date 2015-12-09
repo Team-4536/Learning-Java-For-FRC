@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
 	
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
-	SmartDash smartdashCommand;
+	SmartDash smartDashCommand;
 	
 
 	/**
@@ -51,6 +51,7 @@ public class Robot extends IterativeRobot {
     	oi = new OI();
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
+    	smartDashCommand = new SmartDash();
     }
 	
     /**
@@ -116,11 +117,11 @@ public class Robot extends IterativeRobot {
     		elevatorCommand.start();
     		
     	}
-    	if(smartdashCommand != null){
+    	if(smartDashCommand != null){
     	
-    		smartdashCommand.start();
-    		
-    	}
+    		smartDashCommand.start();
+    	}	
+    }
     	
     		
     
@@ -145,7 +146,7 @@ public class Robot extends IterativeRobot {
   
     public void teleopPeriodic() {
        Scheduler.getInstance().run();
-    	
+       
 
     }
     

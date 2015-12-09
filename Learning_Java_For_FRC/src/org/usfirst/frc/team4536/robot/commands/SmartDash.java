@@ -23,7 +23,13 @@ public class SmartDash extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-    	SmartDashboard.putNumber("ForttleXaxis",OI.mainStick.getX());
+    	SmartDashboard.putNumber("mainStick-Xaxis: ", OI.mainStick.getX());
+    	SmartDashboard.putNumber("mainStick-Yaxis: ", OI.mainStick.getY());
+    	SmartDashboard.putNumber("secondStick-Xaxis: ", OI.secondStick.getX());
+    	SmartDashboard.putNumber("secondStick-Yaxis: ", OI.secondStick.getY());
+    	SmartDashboard.putNumber("leftMotor:", driveTrain.getLeftThrottle());
+    	SmartDashboard.putNumber("rightMotor:", driveTrain.getLeftThrottle());
+    	SmartDashboard.putNumber("elevatorMotor: ", elevator.getElevator());
     	
     }
 

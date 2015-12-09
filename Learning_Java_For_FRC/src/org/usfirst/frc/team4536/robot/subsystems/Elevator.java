@@ -15,6 +15,18 @@ public class Elevator extends Subsystem {
     public void drive(double speed){
     	jmotor.set(speed);
     }
+    
+    /**
+     * @author Audrey
+     * @return elevator motor value
+     */
+    public double getElevator(){
+    	
+    	return jmotor.get();
+    	
+    }
+    
+    
     public void initDefaultCommand() {
     	
         // Set the default command for a subsystem here.
