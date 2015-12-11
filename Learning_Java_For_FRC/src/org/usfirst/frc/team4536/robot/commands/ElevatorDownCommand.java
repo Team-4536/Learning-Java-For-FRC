@@ -27,6 +27,7 @@ public class ElevatorDownCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println(timer.get());
     	elevator.drive(0.5);
     }
 
