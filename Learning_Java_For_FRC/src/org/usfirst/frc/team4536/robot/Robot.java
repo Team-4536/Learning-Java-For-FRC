@@ -56,9 +56,6 @@ public class Robot extends IterativeRobot {
     	oi = new OI();
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
-    	elevatorUpCommand = new ElevatorUpCommand();
-    	elevatorDownCommand = new ElevatorDownCommand();
-    	driveForwardCommand = new DriveForwardCommand();
     	autoCommandGroup = new AutonomousCommandGroup();
     }
 	
@@ -87,6 +84,9 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
     	System.out.println("autonomous init initialized.");
+    	if(autoCommandGroup != null) {
+    		autoCommandGroup.start();    		
+    	}
     	System.out.println("autonomous init completed.");
     }
 
@@ -98,9 +98,6 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
     	System.out.println("autonomousPeriodic running.");
-    	if(autoCommandGroup != null) {
-    		autoCommandGroup.start();    		
-    	}
         Scheduler.getInstance().run();
     }
 
