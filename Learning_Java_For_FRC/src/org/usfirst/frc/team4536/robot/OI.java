@@ -26,5 +26,9 @@ public class OI {
 	public static Joystick mainStick = new Joystick(RobotMap.MAIN_STICK);
 	
 	public static Button extendPiston = new JoystickButton(mainStick, 3);
+	public static Button retractPiston = new JoystickButton(mainStick, 4);
+
+	//extendPiston.WhenPressed(3);
+	//?how do the above?
 }
 	
