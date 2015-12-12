@@ -39,9 +39,6 @@ public class Robot extends IterativeRobot {
 	
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
-	ElevatorUpCommand elevatorUpCommand;
-	ElevatorDownCommand elevatorDownCommand;
-	DriveForwardCommand driveForwardCommand;
 	AutonomousCommandGroup autoCommandGroup;
 	
 	

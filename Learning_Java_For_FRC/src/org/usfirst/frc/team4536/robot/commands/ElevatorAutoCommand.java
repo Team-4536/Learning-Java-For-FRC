@@ -2,35 +2,37 @@ package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
 
-import org.usfirst.frc.team4536.robot.commands.CommandBase;
-
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * 
+ * @author Sheila
  */
-public class ElevatorDownCommand extends TimeOutCommandBase {
+public class ElevatorAutoCommand extends TimeOutCommandBase {
 	
 	Timer timer = new Timer();
-	
-    public ElevatorDownCommand(double timeOut) {
+	double speed;
+
+    public ElevatorAutoCommand(double timeOut, double spd) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super(timeOut);
+    	//NEGATIVE is UP, and POSITIVE is DOWN
+    	speed = spd;
     	requires(elevator);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println("Initializing elevatorDownCommand...");
+    	System.out.println("Initializing elevatorAutoCommand...");
     	elevator.drive(0.0);
     	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("Timer???" + timer.get());
-    	elevator.drive(0.5);
+    	System.out.println("Time running: " + timer.get());
+    	//NEGATIVE is UP
+    	elevator.drive(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()

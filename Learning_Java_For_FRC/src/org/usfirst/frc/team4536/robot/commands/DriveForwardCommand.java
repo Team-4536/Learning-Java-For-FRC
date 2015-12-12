@@ -1,29 +1,39 @@
 package org.usfirst.frc.team4536.robot.commands;
 
 import org.usfirst.frc.team4536.robot.OI;
+
+import edu.wpi.first.wpilibj.Timer;
 /**
- * 
+ * @author Sheila
  */
-public class DriveForwardCommand extends CommandBase {
+public class DriveForwardCommand extends TimeOutCommandBase {
+
+	Timer timer = new Timer();
 	
-    public DriveForwardCommand() {
+    public DriveForwardCommand(double timeOut) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	super(timeOut);
     	requires(driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
     	driveTrain.arcadeDrive(0.0, 0.0);
+    	timer.start();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	System.out.println("Time running: " + timer.get());
     	driveTrain.arcadeDrive(0.25, 0.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	if (timer.get() > 2) {
+    		return true;
+    	}
         return false;
     }
 
