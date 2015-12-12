@@ -3,7 +3,7 @@ package org.usfirst.frc.team4536.robot.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * @author Sheila
+ * @author Sheila (newbie)
  */
 public class AutonomousCommandGroup extends CommandGroup {
     
@@ -13,10 +13,14 @@ public class AutonomousCommandGroup extends CommandGroup {
         //      addSequential(new Command2());
         // these will run in order.
     	
-    	//NEGATIVE is UP, and POSITIVE is DOWN
-    	addSequential(new ElevatorAutoCommand(3, 0.5)); //half speed down for 3 seconds
-    	addParallel(new DriveForwardCommand(1)); //hopefully, moves forward for 1 second
-    	addSequential(new ElevatorAutoCommand(3, -0.5)); //half speed up for 3 seconds
+    	//NEGATIVE is UP   or FORWARD  or LEFT, and
+    	//POSITIVE is DOWN or BACKWARD or RIGHT
+    	//drive 1 second, forward quarter speed, no turn
+    	addParallel(new DriveAutoCommand(1, -0.25, 0.0)); 
+    	//elevator 3 seconds, down half speed
+    	addSequential(new ElevatorAutoCommand(3, 0.5)); 
+    	//elevator 3 seconds, up half speed
+    	addSequential(new ElevatorAutoCommand(3, -0.5)); 
 
         // To run multiple commands at the same time,
         // use addParallel()

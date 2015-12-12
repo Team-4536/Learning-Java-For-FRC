@@ -4,16 +4,20 @@ import org.usfirst.frc.team4536.robot.OI;
 
 import edu.wpi.first.wpilibj.Timer;
 /**
- * @author Sheila
+ * @author Sheila (newbie)
  */
-public class DriveForwardCommand extends TimeOutCommandBase {
+public class DriveAutoCommand extends TimeOutCommandBase {
 
 	Timer timer = new Timer();
+	double speed;
+	double turn;
 	
-    public DriveForwardCommand(double timeOut) {
+    public DriveAutoCommand(double timeOut, double spd, double trn) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	super(timeOut);
+    	speed = spd;
+    	turn = trn;
     	requires(driveTrain);
     }
 
@@ -26,7 +30,9 @@ public class DriveForwardCommand extends TimeOutCommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	System.out.println("Time running: " + timer.get());
-    	driveTrain.arcadeDrive(0.25, 0.25);
+    	//first var is forward/backward, second var is turning
+    	//forwards is negative (same as up in elevator)
+    	driveTrain.arcadeDrive(speed,turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -5,7 +5,7 @@ import org.usfirst.frc.team4536.robot.OI;
 import edu.wpi.first.wpilibj.Timer;
 
 /**
- * @author Sheila
+ * @author Sheila (newbie)
  */
 public class ElevatorAutoCommand extends TimeOutCommandBase {
 	
