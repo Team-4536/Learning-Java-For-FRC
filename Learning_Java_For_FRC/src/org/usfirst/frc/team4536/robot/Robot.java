@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
 	SmartDash smartDashCommand;
+	AutonomousCommandGroup autoCommandGroup;
 	
 
 	/**
@@ -52,6 +53,7 @@ public class Robot extends IterativeRobot {
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
     	smartDashCommand = new SmartDash();
+    	autoCommandGroup = new AutonomousCommandGroup();
     }
 	
     /**
@@ -78,7 +80,11 @@ public class Robot extends IterativeRobot {
 	 * of code (which is autonomousPeriodic).
 	 */
     public void autonomousInit() {
-    	
+    	System.out.println("autonomous init initialized.");
+    	if(autoCommandGroup != null) {
+    		autoCommandGroup.start();    		
+    	}
+    	System.out.println("autonomous init completed.");
     }
 
     /**
@@ -88,6 +94,7 @@ public class Robot extends IterativeRobot {
      * (where the robot is controlling itself).
      */
     public void autonomousPeriodic() {
+    	System.out.println("autonomousPeriodic running.");
         Scheduler.getInstance().run();
     }
 
@@ -107,6 +114,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
     	
+    	
+    	System.out.println("teleop init initialized.");
+    	
     	if(driveTrainCommand != null){
     		
     		driveTrainCommand.start();
@@ -121,6 +131,7 @@ public class Robot extends IterativeRobot {
     	
     		smartDashCommand.start();
     	}	
+    	System.out.println("teleop init finished.");
     }
     	
     		
@@ -141,7 +152,7 @@ public class Robot extends IterativeRobot {
      * every cycle of code during the teleop period. Recall: a cycle of code
      * is 20 ms. The teleop time period is 2 minutes and 10 - 15 seconds long
      * in typical competition years so you update your robot with what's going
-     * on on your joystick alot!
+     * on on your joystick a lot!
      */
   
     public void teleopPeriodic() {
