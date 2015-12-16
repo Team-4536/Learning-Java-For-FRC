@@ -28,7 +28,7 @@ public class SmartDash extends CommandBase {
     	SmartDashboard.putNumber("secondStick-Xaxis: ", OI.secondStick.getX());
     	SmartDashboard.putNumber("secondStick-Yaxis: ", OI.secondStick.getY());
     	SmartDashboard.putNumber("leftMotor:", driveTrain.getLeftThrottle());
-    	SmartDashboard.putNumber("rightMotor:", driveTrain.getLeftThrottle());
+    	SmartDashboard.putNumber("rightMotor:", driveTrain.getRightThrottle());
     	SmartDashboard.putNumber("elevatorMotor: ", elevator.getElevator());
     	
     }
