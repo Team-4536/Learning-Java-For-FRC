@@ -32,7 +32,7 @@ public class DriveAutoCommand extends TimeOutCommandBase {
     	System.out.println("Time running: " + timer.get());
     	//first var is forward/backward, second var is turning
     	//forwards is negative (same as up in elevator)
-    	driveTrain.arcadeDrive(speed,turn);
+    	driveTrain.arcadeDrive(speed, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -87,7 +87,7 @@ public class Utilities {
 	 * @author Audrey
 	 * @param limited speed speed to be limited
 	 * @param zone that makes speed O
-	 * @param speed is 0 if it is bewteen zone and -zone
+	 * @param speed is 0 if it is between zone and -zone
 	 * @return limited speed
 	 */
 	public static double deadZone(double speed, double zone){

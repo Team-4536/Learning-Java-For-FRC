@@ -26,22 +26,20 @@ public class DriveTrainCommand extends CommandBase {
 
     // Default drive command
     protected void execute() {
-    	System.out.println(Utilities.accelLimit(0.1, 0, 0.04));
-    	
     	double forwardThrottle = OI.mainStick.getY();
     	double turnThrottle = OI.mainStick.getX();
     	
-    	forwardThrottle = Utilities.deadZone(forwardThrottle, 0.1);
-    	turnThrottle = Utilities.deadZone(turnThrottle, 0.1);
+    	forwardThrottle = Utilities.deadZone(forwardThrottle, Constants.DEAD_ZONE);
+    	turnThrottle = Utilities.deadZone(turnThrottle, Constants.DEAD_ZONE);
     	
-    	forwardThrottle = Utilities.limit(forwardThrottle, 1.0);
-    	turnThrottle = Utilities.limit(turnThrottle, 1.0);
+    	forwardThrottle = Utilities.limit(forwardThrottle, Constants.LIMIT);
+    	turnThrottle = Utilities.limit(turnThrottle, Constants.LIMIT);
     	
-    	forwardThrottle = Utilities.speedCurve(forwardThrottle, 2.5);
-    	turnThrottle = Utilities.speedCurve(turnThrottle, 2.5);
+    	forwardThrottle = Utilities.speedCurve(forwardThrottle, Constants.SPEED_CURVE);
+    	turnThrottle = Utilities.speedCurve(turnThrottle, Constants.SPEED_CURVE);
     	
-    	forwardThrottle = Utilities.accelLimit(forwardThrottle, prevForwardThrottle, 2);
-    	turnThrottle = Utilities.accelLimit(turnThrottle, prevTurnThrottle, 2);
+    	forwardThrottle = Utilities.accelLimit(forwardThrottle, prevForwardThrottle, Constants.ACCEL_LIMIT);
+    	turnThrottle = Utilities.accelLimit(turnThrottle, prevTurnThrottle, Constants.ACCEL_LIMIT);
     			
     	driveTrain.arcadeDrive(forwardThrottle, turnThrottle);
     	
