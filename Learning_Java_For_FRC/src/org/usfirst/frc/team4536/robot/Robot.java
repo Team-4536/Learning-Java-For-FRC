@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot {
 	DriveTrainCommand driveTrainCommand;
 	ElevatorCommand elevatorCommand;
 	SmartDash smartDashCommand;
-	
+	RunCompressor runCompressorCommand;
 
 	/**
 	 * @author Liam
@@ -52,6 +52,7 @@ public class Robot extends IterativeRobot {
     	driveTrainCommand = new DriveTrainCommand();
     	elevatorCommand = new ElevatorCommand();
     	smartDashCommand = new SmartDash();
+    	runCompressorCommand = new RunCompressor();
     }
 	
     /**
@@ -78,7 +79,9 @@ public class Robot extends IterativeRobot {
 	 * of code (which is autonomousPeriodic).
 	 */
     public void autonomousInit() {
-    	
+    	if (runCompressorCommand!= null) {
+    		runCompressorCommand.start();
+    	}
     }
 
     /**
