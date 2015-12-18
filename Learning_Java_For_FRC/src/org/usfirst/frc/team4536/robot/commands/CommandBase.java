@@ -6,11 +6,13 @@ import org.usfirst.frc.team4536.robot.RobotMap;
 import org.usfirst.frc.team4536.robot.subsystems.*;
 
 /**
+ * @H(small 2)Olivia Rules("compressorSubsystem")
  *
  */
 public abstract class CommandBase extends Command {
 
 	public static DriveTrain driveTrain = new DriveTrain(RobotMap.LEFT_MOTOR, RobotMap.RIGHT_MOTOR);
+	public static CompressorSubsystem compressorSubsystem = new CompressorSubsystem();
 	public static Elevator elevator = new Elevator(RobotMap.ELEVATOR_CHANNEL);
 	
     public CommandBase() {
