@@ -5,4 +5,5 @@ public class Constants {
 	public static final double LIMIT = 1.0;
 	public static final double SPEED_CURVE = 2.5;
 	public static final int ACCEL_LIMIT = 2;
+	//public static final double PULSE_DISTANCE = number;
 }

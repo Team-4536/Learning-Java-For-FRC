@@ -3,6 +3,8 @@ package org.usfirst.frc.team4536.robot.commands;
 import org.usfirst.frc.team4536.robot.*;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Encoder;
+import org.usfirst.frc.team4536.robot.Constants;
 
 /**
  *
@@ -11,6 +13,7 @@ public class DriveTrainCommand extends CommandBase {
 	
 	double prevForwardThrottle = 0;
 	double prevTurnThrottle = 0;
+	Encoder encoder = new Encoder(2, 7);
 
 	
     public DriveTrainCommand() {
@@ -21,6 +24,8 @@ public class DriveTrainCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	System.out.println(encoder.get());
+		//encoder.setDistancePerPulse(Constants.PULSE_DISTANCE);
     	driveTrain.arcadeDrive(0, 0);
     }
 
