@@ -7,13 +7,14 @@ import edu.wpi.first.wpilibj.Encoder;
 import org.usfirst.frc.team4536.robot.Constants;
 
 /**
- *
+ * 
  */
 public class DriveTrainCommand extends CommandBase {
 	
 	double prevForwardThrottle = 0;
 	double prevTurnThrottle = 0;
-	Encoder encoder = new Encoder(2, 7);
+	Encoder encoder = new Encoder(2, 7); 
+	//TODO if encoder is broken, switch these params
 
 	
     public DriveTrainCommand() {
@@ -24,13 +25,14 @@ public class DriveTrainCommand extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	System.out.println(encoder.get());
+    	System.out.println("Scale: "+encoder.getEncodingScale());
 		//encoder.setDistancePerPulse(Constants.PULSE_DISTANCE);
     	driveTrain.arcadeDrive(0, 0);
     }
 
     // Default drive command
     protected void execute() {
+    	System.out.println("e: "+encoder.get());
     	double forwardThrottle = OI.mainStick.getY();
     	double turnThrottle = OI.mainStick.getX();
     	
