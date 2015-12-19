@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Robot extends IterativeRobot {
 	DriveTrainCommand driveTrainCommand;
 	Command pistonCommand;
+	Command ButtonCommandCommand;
 	public static OI oi;
 	
     public void robotInit() { 	
     	
     	driveTrainCommand = new DriveTrainCommand();
+    	ButtonCommandCommand = new ButtonCommand();
     }
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
@@ -31,13 +33,16 @@ public class Robot extends IterativeRobot {
     	if(driveTrainCommand != null){		
     		driveTrainCommand.start();
     	}
+    	if(ButtonCommandCommand != null){
+    		ButtonCommandCommand.start();   		
+    	}
     }
     
     public void disabledInit(){
     }
     public void teleopPeriodic() {
        Scheduler.getInstance().run();
-      
+
     }
     public void testPeriodic() {
         LiveWindow.run();

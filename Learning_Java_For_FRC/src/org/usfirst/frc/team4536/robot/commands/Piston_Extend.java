@@ -7,7 +7,7 @@ import org.usfirst.frc.team4536.robot.RobotMap;
 
 public class Piston_Extend extends CommandBase {
 	
-	boolean extend = OI.extendPiston.get();
+
     public Piston_Extend() {
     	requires (piston);
     }
@@ -19,9 +19,10 @@ public class Piston_Extend extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
         piston.extend();
     		
-
+        	
   	}
 
     // Make this return true when this Command no longer needs to run execute()
